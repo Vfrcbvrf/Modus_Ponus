@@ -1,0 +1,16 @@
+name: Auto Push
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Push Changes
+        run: |
+          git push
