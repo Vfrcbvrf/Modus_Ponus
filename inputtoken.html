@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка файла на GitHub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Загрузка файла на GitHub</h1>
+    <h2>Шаг 1: Введите токен GitHub</h2>
+    <label for="tokenInput">Введите ваш токен GitHub:</label><br>
+    <input type="text" id="tokenInput" required><br>
+
+    <h2>Шаг 2: Укажите данные для загрузки файла</h2>
+    <label for="usernameInput">Имя пользователя GitHub:</label><br>
+    <input type="text" id="usernameInput" required><br>
+    <label for="repoInput">Название репозитория:</label><br>
+    <input type="text" id="repoInput" required><br>
+    <label for="branchInput">Имя ветки:</label><br>
+    <input type="text" id="branchInput" required><br>
+    <label for="fileInput">Выберите файл:</label>
+    <input type="file" id="fileInput" required>
+    <button onclick="uploadFile()" id="uploadButton" disabled>Загрузить</button>
+
+    <script>
+        function uploadFile() {
+            var tokenInput = document.getElementById('tokenInput');
+            var usernameInput = document.getElementById('usernameInput');
+            var repoInput = document.getElementById('repoInput');
+            var branchInput = document.getElementById('branchInput');
+            var fileInput = document.getElementById('fileInput');
+            var file = fileInput.files[0];
+
+            var token = tokenInput.value.trim();
+            var owner = usernameInput.value.trim();
+            var repo = repoInput.value.trim();
+            var branch = branchInput.value.trim(); // Имя ветки
+
+            var url = "https://api.github.com/repos/" + owner + "/" + repo + "/contents/" + file.name;
+            var headers = {
+                "Authorization": "token " + token
+            };
+
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var content = event.target.result;
+                var encodedContent = btoa(content);
+
+                var data = {
+                    "message": "Add file via API",
+                    "content": encodedContent,
+                    "branch": branch
+                };
+
+                fetch(url, {
+                    method: 'PUT',
+                    headers: headers,
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Файл успешно загружен на GitHub.");
+                    } else {
+                        response.json().then(data => {
+                            alert("Произошла ошибка при загрузке файла на GitHub: " + data.message);
+                        });
+                    }
+                })
+                .catch(error => {
+                    alert("Произошла ошибка при загрузке файла на GitHub: " + error.message);
+                });
+            };
+
+            reader.readAsBinaryString(file);
+        }
+
+        // Проверка заполнения всех полей перед разрешением нажатия кнопки "Загрузить"
+        var inputs = document.querySelectorAll('input[type="text"], input[type="file"]');
+        var uploadButton = document.getElementById('uploadButton');
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                var allFilled = true;
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        allFilled = false;
+                    }
+                });
+                uploadButton.disabled = !allFilled;
+            });
+        });
+    </script>
+</body>
+</html>
