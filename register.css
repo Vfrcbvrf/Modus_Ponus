@@ -1,8 +1,22 @@
+/* Общие стили */
+:root {
+  --primary-color: #14A9FF;
+  --secondary-color: #0060B9;
+  --text-color: #595959;
+  --border-color: #D9D9D9;
+  --background-color: #FFFFFF;
+  --button-hover-color: #85DCFF;
+  --button-text-color: #FFFFFF;
+  --button-background-color: var(--primary-color);
+  --company-name-color: #71b0dc; /* Цвет названия компании */
+}
+
 body {
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
   margin: 0;
   padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 .container {
@@ -17,7 +31,7 @@ body {
 
 h1 {
   text-align: center;
-  color: #333;
+  color: var(--text-color);
 }
 
 form {
@@ -27,16 +41,17 @@ form {
 label {
   display: block;
   margin-bottom: 5px;
-  color: #333;
+  color: var(--text-color);
 }
 
 input[type="text"],
 input[type="password"],
+input[type="email"],
 select {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   border-radius: 5px;
   box-sizing: border-box;
 }
@@ -48,13 +63,41 @@ input[type="checkbox"] {
 input[type="submit"] {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 input[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: var(--button-hover-color);
+}
+
+/* Дополнительные стили для темы компании */
+.company-name {
+  color: var(--company-name-color);
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.section-title {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  color: var(--secondary-color);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.footer {
+  border-top: 2px solid var(--primary-color);
+  padding-top: 20px;
+  margin-top: 50px;
+  text-align: center;
+  color: var(--primary-color);
 }
