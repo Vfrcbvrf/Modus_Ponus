@@ -62,8 +62,14 @@
             box-sizing: border-box;
         }
 
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
         input[type="checkbox"] {
-            margin-top: 5px;
+            margin-right: 10px;
         }
 
         input[type="submit"] {
@@ -97,13 +103,12 @@
                 <option value="student">Студент</option>
                 <option value="teacher">Преподаватель</option>
             </select>
-            <input type="checkbox" id="terms" name="terms" required>
-            <label for="terms">Я принимаю условия использования</label>
+            <div class="checkbox-container">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">Я принимаю условия использования</label>
+            </div>
             <input type="submit" value="Зарегистрироваться">
         </form>
-
-
-        
     </div>
 </body>
 
