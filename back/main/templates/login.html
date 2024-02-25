@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+{% load static %}
+
 <html lang="en">
   <head>
     <title>login - Any Embellished Mule</title>
@@ -135,9 +138,9 @@
     </style>
   </head>
   <body>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <div>
-      <link href="./login.css" rel="stylesheet" />
+      <link href="{% static 'css/login.css' %}" rel="stylesheet" />
 
       <div class="login-container">
         <header
