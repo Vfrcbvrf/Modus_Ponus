@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+{% load static %}
+
 <html lang="en">
   <head>
     <title>Any Embellished Mule</title>
@@ -135,9 +138,9 @@
     </style>
   </head>
   <body>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <div>
-      <link href="./index.css" rel="stylesheet" />
+      <link href="{% static 'css/index.css' %}" rel="stylesheet" />
 
       <div class="home-container">
         <div class="home-header">
@@ -228,7 +231,7 @@
           <div class="heroContainer home-hero1">
             <img
               alt="image"
-              src="public/modus%20ponens-300h.png"
+              src=" {% static 'img/modus%20ponens-300h.png' %}"
               class="home-image"
             />
             <div class="home-container1">
