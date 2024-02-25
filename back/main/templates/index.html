@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+{% load static %}
+
 <html lang="en">
   <head>
     <title>Any Embellished Mule</title>
@@ -135,9 +138,9 @@
     </style>
   </head>
   <body>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <div>
-      <link href="./index.css" rel="stylesheet" />
+      <link href="{% static 'css/index.css' %}" rel="stylesheet" />
 
       <div class="home-container">
         <div class="home-header">
@@ -154,8 +157,8 @@
                 <span class="home-nav42 bodySmall">Преподаватели</span>
               </nav>
               <div class="home-buttons">
-                <a href="login.html" class="home-login buttonFlat">Войти</a>
-                <a href="register.html" class="home-register buttonFilled">
+                <a href="login" class="home-login buttonFlat">Войти</a>
+                <a href="register" class="home-register buttonFilled">
                   Регистрация
                 </a>
               </div>
@@ -228,12 +231,12 @@
           <div class="heroContainer home-hero1">
             <img
               alt="image"
-              src="public/modus%20ponens-300h.png"
+              src=" {% static 'img/modus%20ponens-300h.png' %}"
               class="home-image"
             />
             <div class="home-container1">
               <div class="home-btn-group">
-                <a href="register.html" class="home-hero-button1 buttonFilled">
+                <a href="register" class="home-hero-button1 buttonFilled">
                   Начать
                 </a>
                 <button class="buttonFlat">Узнать больше →</button>
@@ -365,7 +368,7 @@
                 </span>
               </span>
             </span>
-            <a href="register.html" class="home-banner-button buttonFilled">
+            <a href="register" class="home-banner-button buttonFilled">
               Зарегистрироваться
             </a>
           </div>
