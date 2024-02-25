@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Профиль пользователя</title>
+    <title>Страница студента</title>
     <style>
         /* Общие стили */
         body {
@@ -68,7 +68,7 @@
             margin-bottom: 20px;
         }
 
-        .logout-btn {
+        .submit-btn {
             margin-top: 20px;
             padding: 10px 20px;
             background-color: #007bff;
@@ -79,7 +79,7 @@
             transition: background-color 0.3s ease;
         }
 
-        .logout-btn:hover {
+        .submit-btn:hover {
             background-color: #0056b3;
         }
     </style>
@@ -97,30 +97,31 @@
                     <input type="text" placeholder="Поиск по курсам...">
                 </div>
                 <ul>
-                    <li><a href="course1.html">Курс 1</a></li>
-                    <li><a href="#">Курс 2</a></li>
-                    <li><a href="#">Курс 3</a></li>
-                    <li><a href="#">Курс 4</a></li>
+                    <li>Курс 1</li>
+                    <li>Курс 2</li>
+                    <li>Курс 3</li>
+                    <li>Курс 4</li>
                 </ul>
             </div>
             
             <div class="profile-info">
-                <h2>Информация о профиле</h2>
-                <p><strong>Имя:</strong> John</p>
-                <p><strong>Фамилия:</strong> Doe</p>
-                <p><strong>Номер группы:</strong> 12345</p>
-                <p><strong>Роль:</strong> Студент</p>
-                <button class="logout-btn" onclick="logout()">Выйти</button>
+                <h2>Теоретический материал</h2>
+                <p>Содержание теоретического материала курса...</p>
+                <h2>Задание</h2>
+                <p>Описание задания для выполнения...</p>
+                <h2>Комментарии преподавателя</h2>
+                <p>Комментарии и рекомендации преподавателя...</p>
+                <h2>Оценка</h2>
+                <p>Оценка за выполненное задание...</p>
+                <button class="submit-btn" onclick="redirectToInputToken()">Отправить</button>
             </div>
-            <img class="avatar" src="img/user_avatar.png" alt="User Avatar">
         </div>
     </div>
 
     <script>
-        function logout() {
-            // Реализация выхода из аккаунта
-            alert("Вы успешно вышли из аккаунта.");
-            // Здесь можно добавить перенаправление на страницу входа
+        function redirectToInputToken() {
+            // Редирект на страницу inputtoken.html
+            window.location.href = "inputtoken.html";
         }
     </script>
 </body>
