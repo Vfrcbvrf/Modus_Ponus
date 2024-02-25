@@ -43,6 +43,11 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -60,9 +65,26 @@
     <input type="text" id="branchInput" required><br>
     <label for="fileInput">Выберите файл:</label>
     <input type="file" id="fileInput" required>
-    <button onclick="uploadFile()" id="uploadButton" disabled>Загрузить</button>
+    <button onclick="validateAndUpload()">Загрузить</button>
+
+    <p id="errorMessage" class="error-message" style="display: none;">Пожалуйста, заполните все поля и выберите файл.</p>
 
     <script>
+        function validateAndUpload() {
+            var tokenInput = document.getElementById('tokenInput');
+            var usernameInput = document.getElementById('usernameInput');
+            var repoInput = document.getElementById('repoInput');
+            var branchInput = document.getElementById('branchInput');
+            var fileInput = document.getElementById('fileInput');
+
+            if (tokenInput.value.trim() === '' || usernameInput.value.trim() === '' || repoInput.value.trim() === '' || branchInput.value.trim() === '' || fileInput.files.length === 0) {
+                document.getElementById('errorMessage').style.display = 'block';
+            } else {
+                document.getElementById('errorMessage').style.display = 'none';
+                uploadFile();
+            }
+        }
+
         function uploadFile() {
             var tokenInput = document.getElementById('tokenInput');
             var usernameInput = document.getElementById('usernameInput');
@@ -113,21 +135,6 @@
 
             reader.readAsBinaryString(file);
         }
-
-        // Проверка заполнения всех полей перед разрешением нажатия кнопки "Загрузить"
-        var inputs = document.querySelectorAll('input[type="text"], input[type="file"]');
-        var uploadButton = document.getElementById('uploadButton');
-        inputs.forEach(input => {
-            input.addEventListener('input', function() {
-                var allFilled = true;
-                inputs.forEach(input => {
-                    if (!input.value.trim()) {
-                        allFilled = false;
-                    }
-                });
-                uploadButton.disabled = !allFilled;
-            });
-        });
     </script>
 </body>
 </html>
