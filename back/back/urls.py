@@ -23,5 +23,5 @@ urlpatterns = [
     path('' , views.index, name = "home"),
     path ('token/', views.token, name = "token"),
     path('login/', views.login, name = "login"),
-    path ('registration/', views.register, name = "register"),
+    path ('register/', views.register, name = "register"),
 ]
